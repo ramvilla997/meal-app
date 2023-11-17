@@ -1,0 +1,137 @@
+.landing-page {
+  font-family: 'Arial', sans-serif;
+  color: #fff; /* White color for better contrast */
+  line-height: 1.6;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Separate container for background image */
+.background-image {
+  background-image: url('../assets/5.jpg'); /* Path to your actual image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(8px); /* Apply the blur effect */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -2; /* Behind everything */
+}
+
+/* Transparent black overlay */
+.background-overlay {
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1; /* On top of the background image, behind content */
+}
+
+/* Content area with the main elements */
+/* Content area layout */
+.content-area {
+  display: flex;
+  height: 100%;
+}
+
+/* Text section styling */
+.text-section {
+  flex-basis: 50%;
+  padding: 2rem;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header {
+  flex-basis: 50%;
+  text-align: left;
+  align-self: start; /* Align the header to the top left corner */
+  padding-left: 1rem; /* Add padding to match the overall content-area padding */
+
+}
+
+.header h1 {
+  font-size: 4rem; /* Larger font size for the title */
+  font-weight: bold; /* Make the title bold */
+  margin-bottom: 1rem;
+}
+
+.header p {
+  font-size: 1rem; /* Smaller font size for the content */
+  margin-bottom: 1rem;
+}
+
+/* No need for a text shadow anymore since the overlay won't be on top of the text */
+.header h1, .header p {
+  text-shadow: none;
+}
+
+/* Image section styling with linear gradient overlay */
+.image-section {
+  flex: 0.7; /* Take up the remaining space */
+  background: linear-gradient(
+      to right, 
+      rgba(0, 0, 0, 0.9), /* Starting with the same semi-transparent black as the left */
+      rgba(0, 0, 0, 0.4) 50%, /* Midpoint color - slightly more transparent black */
+      rgba(255, 255, 255, 0) 100% /* Ending color, fully transparent */
+    ),
+    url('../assets/7.jpg') no-repeat center center; /* Your side image path here */
+  background-size: cover;
+  position: relative; /* Ensure it's properly positioned */
+}
+
+.image-section img {
+  flex: 1; /* Take up the remaining space */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* Call to action button styles */
+.cta-button {
+  background: #e8491d;
+  color: #fff;
+  padding: 1.2rem 2.5rem; /* Larger padding for a bigger button */
+  font-size: 1.5rem; /* Larger font size for the button text */
+  font-weight: bold; /* Optional: make the button text bold */
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  margin-top: 3rem; /* Add space above the button */
+}
+
+.cta-button:hover {
+  background: #cf391a; /* Slightly darker background on hover */
+}
+
+
+/* Footer styles */
+.footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer p {
+  margin: 0;
+}
+@keyframes moveGradient {
+  0% {
+    background-position: left bottom;
+  }
+  100% {
+    background-position: right bottom;
+  }
+}
