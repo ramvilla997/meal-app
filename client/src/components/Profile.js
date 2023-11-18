@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import { TextField, Button,Grid, FormControl, FormControlLabel, FormGroup, Checkbox, Select, MenuItem, InputLabel, Paper, Typography, Container } from '@material-ui/core';
+import { TextField, Button, Grid, FormControl, FormControlLabel, FormGroup, Checkbox, Select, MenuItem, InputLabel, Paper, Typography, Container } from '@material-ui/core';
 import useStyles from '../styles/profileForm'; // Import custom styles
 
 const ProfileForm = () => {
@@ -18,6 +18,9 @@ const ProfileForm = () => {
     preferredCuisines: [],
     mealTypes: [],
     shoppingFrequency: '',
+    healthGoals: '',
+    cookingSkillLevel: '',
+    favoriteRecipes: '',
     // Additional preferences can be added here
   });
   const [success, setSuccess] = useState(''); // New state for success message
@@ -99,149 +102,224 @@ const ProfileForm = () => {
     <>
       {success && <div className="success-message">{success}</div>}
       {error && <div className="error-message">{error}</div>}
-      {/* <form onSubmit={handleSubmit}>
-      <label>
-        Taste Preferences:
-        <input
-          type="text"
-          name="tastePreferences"
-          value={profile.tastePreferences}
-          onChange={handleChange}
-        />
-      </label>
 
-      <fieldset>
-        <legend>Dietary Restrictions:</legend>
-        <label>
-          <input
-            type="checkbox"
-            name="dietaryRestrictions"
-            value="Gluten Free"
-            onChange={handleChange}
-            checked={profile.dietaryRestrictions.includes('Gluten Free')}
-          />
-          Gluten Free
-        </label>
-      </fieldset>
+      <div className={classes.root}>
 
-      <fieldset>
-        <legend>Preferred Cuisines:</legend>
-        <label>
-          <input
-            type="checkbox"
-            name="preferredCuisines"
-            value="Italian"
-            onChange={handleChange}
-            checked={profile.preferredCuisines.includes('Italian')}
-          />
-          Italian
-        </label>
-      </fieldset>
-
-      <fieldset>
-        <legend>Meal Types:</legend>
-        <label>
-          <input
-            type="checkbox"
-            name="mealTypes"
-            value="Breakfast"
-            onChange={handleChange}
-            checked={profile.mealTypes.includes('Breakfast')}
-          />
-          Breakfast
-        </label>
-      </fieldset>
-
-      <label>
-        Shopping Frequency:
-        <select
-          name="shoppingFrequency"
-          value={profile.shoppingFrequency}
-          onChange={handleChange}
-        >
-          <option value="">Select...</option>
-          <option value="Weekly">Weekly</option>
-          <option value="Bi-Weekly">Bi-Weekly</option>
-          <option value="Monthly">Monthly</option>
-        </select>
-      </label>
-
-      <button type="submit">Save Profile</button>
-    </form> */}
-
-<Container component="main" maxWidth="md">
-      <Paper elevation={3} className={classes.paper}>
-        <Typography variant="h6">Profile Settings</Typography>
-        <form onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Taste Preferences"
-                name="tastePreferences"
-                value={profile.tastePreferences}
-                onChange={handleChange}
-                variant="outlined"
-                className={classes.formControl}
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <FormControl component="fieldset" className={classes.formControl}>
-                <InputLabel shrink>Dietary Restrictions</InputLabel>
-                <FormGroup className={classes.formGroup}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={profile.dietaryRestrictions.includes('Gluten Free')}
-                        onChange={handleChange}
-                        name="dietaryRestrictions"
-                        value="Gluten Free"
-                        className={classes.checkbox}
-                      />
-                    }
-                    label="Gluten Free"
-                    className={classes.formLabel}
-                  />
-                  {/* Repeat for other dietary restrictions */}
-                </FormGroup>
-              </FormControl>
-            </Grid>
-
-            {/* Repeat similar structure for Preferred Cuisines and Meal Types */}
-
-            <Grid item xs={12}>
-              <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel>Shopping Frequency</InputLabel>
-                <Select
-                  value={profile.shoppingFrequency}
+      {/* <Container component="main" maxWidth="md">
+        <Paper elevation={3} className={classes.paper}>
+          <Typography variant="h6">Profile Settings</Typography>
+          <form onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Taste Preferences"
+                  name="tastePreferences"
+                  value={profile.tastePreferences}
                   onChange={handleChange}
-                  label="Shopping Frequency"
-                  name="shoppingFrequency"
-                  className={classes.selectEmpty}
-                >
-                  <MenuItem value=""><em>None</em></MenuItem>
-                  <MenuItem value="Weekly">Weekly</MenuItem>
-                  {/* ... other options ... */}
-                </Select>
-              </FormControl>
-            </Grid>
+                  variant="outlined"
+                  className={classes.formControl}
+                />
+              </Grid>
 
-            <Grid item xs={12}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth
-                className={classes.submitButton}
-              >
-                Save Profile
-              </Button>
+              <Grid item xs={12}>
+                <FormControl component="fieldset" className={classes.formControl}>
+                  <InputLabel shrink>Dietary Restrictions</InputLabel>
+                  <FormGroup className={classes.formGroup}>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={profile.dietaryRestrictions.includes('Gluten Free')}
+                          onChange={handleChange}
+                          name="dietaryRestrictions"
+                          value="Gluten Free"
+                          className={classes.checkbox}
+                        />
+                      }
+                      label="Gluten Free"
+                      className={classes.formLabel}
+                    />
+                  </FormGroup>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Health Goals"
+                    name="healthGoals"
+                    value={profile.healthGoals}
+                    onChange={handleChange}
+                    variant="outlined"
+                    className={classes.formControl}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Preferred Cuisines"
+                    name="preferredCuisines"
+                    value={profile.preferredCuisines}
+                    onChange={handleChange}
+                    variant="outlined"
+                    className={classes.formControl}
+                  />
+                </Grid>
+              <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Favorite Recipes"
+                    name="favoriteRecipes"
+                    value={profile.favoriteRecipes}
+                    onChange={handleChange}
+                    variant="outlined"
+                    className={classes.formControl}
+                  />
+                </Grid>
+
+
+              <Grid item xs={12}>
+                <FormControl variant="outlined" className={classes.formControl}>
+                  <InputLabel>Shopping Frequency</InputLabel>
+                  <Select
+                    value={profile.shoppingFrequency}
+                    onChange={handleChange}
+                    label="Shopping Frequency"
+                    name="shoppingFrequency"
+                    className={classes.selectEmpty}
+                  >
+                    <MenuItem value=""><em>None</em></MenuItem>
+                    <MenuItem value="Weekly">Weekly</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  className={classes.submitButton}
+                >
+                  Save Profile
+                </Button>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </Paper>
-    </Container>
+          </form>
+        </Paper>
+      </Container> */}
+      <Container component="main" maxWidth="md">
+  <Paper elevation={3} className={classes.paper}>
+    <Typography variant="h6">Profile Settings</Typography>
+    <form onSubmit={handleSubmit}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={4}>
+          <TextField
+            fullWidth
+            label="Taste Preferences"
+            name="tastePreferences"
+            value={profile.tastePreferences}
+            onChange={handleChange}
+            variant="outlined"
+            className={classes.formControl}
+          />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <TextField
+            fullWidth
+            label="Health Goals"
+            name="healthGoals"
+            value={profile.healthGoals}
+            onChange={handleChange}
+            variant="outlined"
+            className={classes.formControl}
+          />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <TextField
+            fullWidth
+            label="Preferred Cuisines"
+            name="preferredCuisines"
+            value={profile.preferredCuisines}
+            onChange={handleChange}
+            variant="outlined"
+            className={classes.formControl}
+          />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <FormControl component="fieldset" className={classes.formControl}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={profile.dietaryRestrictions.includes('Gluten Free')}
+                    onChange={handleChange}
+                    name="dietaryRestrictions"
+                    value="Gluten Free"
+                    className={classes.checkbox}
+                  />
+                }
+                label="Gluten Free"
+                className={classes.formLabel}
+              />
+          </FormControl>
+        </Grid>
+        <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Cooking Skill Level"
+                    name="cookingSkillLevel"
+                    value={profile.cookingSkillLevel}
+                    onChange={handleChange}
+                    variant="outlined"
+                    className={classes.formControl}
+                  />
+                </Grid>
+        <Grid item xs={12} sm={4}>
+          <TextField
+            fullWidth
+            label="Favorite Recipes"
+            name="favoriteRecipes"
+            value={profile.favoriteRecipes}
+            onChange={handleChange}
+            variant="outlined"
+            className={classes.formControl}
+          />
+        </Grid>
+        
+        {/* Repeat similar structure for other fields */}
+        <Grid item xs={12}>
+          <FormControl variant="outlined" className={classes.formControl}>
+            <InputLabel>Shopping Frequency</InputLabel>
+            <Select
+              value={profile.shoppingFrequency}
+              onChange={handleChange}
+              label="Shopping Frequency"
+              name="shoppingFrequency"
+              className={classes.selectEmpty}
+            >
+              <MenuItem value=""><em>None</em></MenuItem>
+              <MenuItem value="Weekly">Weekly</MenuItem>
+              {/* ... other options ... */}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            className={classes.submitButton}
+          >
+            Save Profile
+          </Button>
+        </Grid>
+      </Grid>
+    </form>
+  </Paper>
+</Container>
+
+      </div>
     </>
   );
 };

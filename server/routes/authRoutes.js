@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const User = require('../models/User'); // Your User model
+const UserProfile =  require("../models/UserProfile")
 
 const bcrypt = require('bcryptjs');
 
@@ -47,9 +48,22 @@ router.post('/register', async (req, res) => {
 });
 
 // Login endpoint
-router.post('/login', passport.authenticate('local'), (req, res) => {
-  // Assuming req.user contains the authenticated user
-  res.json({ message: 'Logged in successfully', user: req.user });
+// router.post('/login', passport.authenticate('local'), (req, res) => {
+//   // Assuming req.user contains the authenticated user
+//   res.json({ message: 'Logged in successfully', user: req.user });
+// });
+
+router.post('/login', passport.authenticate('local'), async (req, res) => {
+  try {
+    const userProfile = await UserProfile.findOne({ user: req.user._id });
+    res.json({
+      message: 'Logged in successfully',
+      user: req.user,
+      profile: userProfile || null  // Include user profile or null if not found
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Error during login', error: error.message });
+  }
 });
 
 // router.get('/logout', (req, res) => {

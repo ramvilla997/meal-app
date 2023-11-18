@@ -1,7 +1,85 @@
+/* RecipeSearch.css */
+
+.recipe-search-container {
+  position: relative;
+  padding: 10vh 0;
+  color: white;
+  text-align: center;
+  height: 1000vh; /* Set the container to cover the full viewport height */
+}
+
+.recipe-search-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)) center/cover;
+  z-index: 1;
+  transition: background-color 0.3s;
+}
+
+.recipe-search-content {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+  text-align: center;
+  width: 100%;
+  z-index: 2; /* Place the content above the overlay */
+}
+
+.recipe-search-bar {
+  position: relative; /* Add this line to make the search bar visible */
+  z-index: 3; /* Add this line to place the search bar above the overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+
+.recipe-search-input {
+  width: 300px;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+  color: #333;
+  font-size: 16px;
+  outline: none;
+  padding: 20px 60px;
+}
+
+.recipe-search-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
 .recipe-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust the card width as needed */
-    gap: 20px; /* Adjust the gap between cards as needed */
-    justify-items: center;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: "100%";
+  margin: 0 auto;
+  padding: 20px;
+  /* background-color: rgba(255, 255, 255, 0.9);  */
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2; /* Place the grid above the overlay */
+}
+
+/* Rest of your existing CSS for the recipe cards */
+.no-recipes-message {
+  text-align: center;
+  font-size: 20px;
+  color: #ffffff;
+  margin-top: 20px;
+}

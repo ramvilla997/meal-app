@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { TextField, Button, Paper, Typography, Container, Grid } from '@material-ui/core';
 import useStyles from '../styles/RegisterForm'; // Import custom styles
+import '../styles/login.css';
 
 
 const RegisterForm = () => {
@@ -26,10 +27,13 @@ const RegisterForm = () => {
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);  // Store the token
         setUser(response.data.user);  // Update user context
+        console.error("Sucess")
         navigate('/login');  // Redirect to login page
       } else {
         // Handle the case where there is no token in the response
         setMessage('Registration successful, but no token received.');
+        console.error("failed")
+
       }
     } catch (error) {
       const errorMessage = error.response && error.response.data && error.response.data.message
@@ -41,28 +45,9 @@ const RegisterForm = () => {
   };
 
   return (
-    // <div>
-    //   <form onSubmit={handleSubmit}>
-    //     <input
-    //       name="username"
-    //       value={credentials.username}
-    //       onChange={handleChange}
-    //       placeholder="Username"
-    //       required
-    //     />
-    //     <input
-    //       name="password"
-    //       type="password"
-    //       value={credentials.password}
-    //       onChange={handleChange}
-    //       placeholder="Password"
-    //       required
-    //     />
-    //     <button type="submit">Register</button>
-    //     {message && <p>{message}</p>}
-    //   </form>
-    // </div>
-        <Container component="main" maxWidth="xs">
+
+    <div className={classes.root}>
+      <Container component="main" maxWidth="xs">
         <Paper className={classes.paper} elevation={3}>
           <Typography variant="h5">Register</Typography>
           <form className={classes.form} onSubmit={handleSubmit}>
@@ -95,10 +80,10 @@ const RegisterForm = () => {
               Register
             </Button>
             {message && <Typography color="error">{message}</Typography>}
-            {/* Add any other buttons or links you need */}
           </form>
         </Paper>
       </Container>
+    </div>
   );
 };
 

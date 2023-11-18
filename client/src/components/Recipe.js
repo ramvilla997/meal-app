@@ -2,25 +2,24 @@ import React, { useState } from "react";
 import "../styles/Recipe.css"; // Import your CSS file for styling
 
 const Recipe = ({ title, calories, image, ingredients }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className={`recipe-card ${isExpanded ? "expanded" : ""}`}>
-      <div className="card-content">
+    <div
+      className={`recipe-card ${isHovered ? "expanded" : ""}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="recipe-image-container">
         <img className="recipe-image" src={image} alt={title} />
-        <h1 className="recipe-title">{title}</h1>
-        <p className="calories">{Math.round(calories)} calories</p>
-        <button className="more-button" onClick={toggleExpand}>
-          {isExpanded ? "Less" : "More"}
-        </button>
+        <div className="recipe-details">
+          <h2 className="recipe-title">{title}</h2>
+          <p className="calories">{Math.round(calories)} calories</p>
+        </div>
       </div>
-      {isExpanded && (
-        <div className="modal">
-          <h2>Ingredients:</h2>
+      <div className={`modal ${isHovered ? "expanded" : ""}`}>
+        <div className="modal-content">
+          <h3>Ingredients:</h3>
           <ul className="ingredient-list">
             {ingredients.map((ingredient, index) => (
               <li key={index} className="ingredient-item">
@@ -28,11 +27,8 @@ const Recipe = ({ title, calories, image, ingredients }) => {
               </li>
             ))}
           </ul>
-          <button className="close-button" onClick={toggleExpand}>
-            Close
-          </button>
         </div>
-      )}
+      </div>
     </div>
   );
 };

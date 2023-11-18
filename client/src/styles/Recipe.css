@@ -1,91 +1,122 @@
 /* Recipe.css */
-
 .recipe-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  
-  .card-content {
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .recipe-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-  
-  .recipe-title {
-    font-size: 18px;
-  }
-  
-  .calories {
-    font-size: 14px;
-  }
-  
-  .more-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .modal {
-    background-color: rgba(0, 0, 0, 0.8);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    overflow: auto;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-  }
-  
-  .expanded .modal {
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  .modal h2 {
-    color: white;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .ingredient-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .ingredient-item {
-    font-size: 18px;
-    margin: 5px 0;
-    color: white;
-  }
-  
-  .close-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
-  }
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+}
+
+.recipe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.recipe-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.recipe-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.recipe-details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5; /* Ensuring it's above the modal */
+}
+
+.recipe-title, .calories {
+  position: absolute;
+  color: white;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.recipe-title {
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+}
+
+.calories {
+  bottom: 10px;
+  left: 10px;
+  font-size: 16px;
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute; /* Changed to absolute */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2; /* Below recipe details */
+  overflow: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.expanded .modal {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 60px;
+  border-radius: 16px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.ingredient-list {
+  list-style: none;
+  padding: 0;
+}
+
+.ingredient-item {
+  font-size: 18px;
+  margin: 5px 0;
+  color: #333;
+}
+
+.close-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.close-button:hover {
+  background-color: #0056b3;
+}

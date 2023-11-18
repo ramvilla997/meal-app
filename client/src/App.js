@@ -27,7 +27,7 @@ function App() {
           <Route path="/register" element={isAuthenticated ? <Navigate to="/" replace /> : <RegisterForm />} />
           <Route path="/profile" element={isAuthenticated ? <ProfileForm /> : <Navigate to="/login" />} />
         </Routes> */}
-        <Routes>
+       <Routes>
           <Route exact path="/" element={!isAuthenticated ? <LandingPage /> : <Navigate to="/profile" />} />
           <Route path="/login" element={!isAuthenticated ? <LoginForm /> : <Navigate to="/profile" />} />
           <Route path="/register" element={!isAuthenticated ? <RegisterForm /> : <Navigate to="/profile" />} />

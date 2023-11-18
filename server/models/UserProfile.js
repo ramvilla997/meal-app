@@ -9,6 +9,9 @@ const userProfileSchema = new mongoose.Schema({
   preferredCuisines: { type: [String], default: [] },
   mealTypes: { type: [String], default: [] },
   shoppingFrequency: { type: String, default: '' },
+  healthGoals: { type: String, default: '' },
+  cookingSkillLevel: { type: String, default: '' },
+  favoriteRecipes: { type: [String], default: [] },
   // ... any other fields ...
 });
 

@@ -7,17 +7,21 @@ exports.getUserProfile = async (req, res) => {
     // If the profile does not exist, you might want to return an empty object
     // with the structure that your frontend expects:
     if (!profile) {
-      return res.json({
-        tastePreferences: '',
-        dietaryRestrictions: [],
-        preferredCuisines: [],
-        mealTypes: [],
-        shoppingFrequency: ''
-      });
+      // return res.json({
+      //   tastePreferences: '',
+      //   dietaryRestrictions: [],
+      //   preferredCuisines: [],
+      //   mealTypes: [],
+      //   shoppingFrequency: ''
+      // });
+      return res.status(404).json({ message: "Profile not found" });
+
     }
+
     res.json(profile);
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).json({ message: "Error fetching user profile", error: err.message });
+
   }
 };
 
@@ -31,6 +35,9 @@ exports.updateUserProfile = async (req, res) => {
       dietaryRestrictions: Array.isArray(req.body.dietaryRestrictions) ? req.body.dietaryRestrictions : [],
       preferredCuisines: Array.isArray(req.body.preferredCuisines) ? req.body.preferredCuisines : [],
       mealTypes: Array.isArray(req.body.mealTypes) ? req.body.mealTypes : [],
+      healthGoals: req.body.healthGoals || '',
+      cookingSkillLevel: req.body.cookingSkillLevel || '',
+      favoriteRecipes: Array.isArray(req.body.favoriteRecipes) ? req.body.favoriteRecipes : []
     };
 
     let profile = await UserProfile.findOneAndUpdate(

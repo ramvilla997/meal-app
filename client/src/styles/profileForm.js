@@ -1,6 +1,18 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundImage: `url('../assets/1.png')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
+    fontFamily: 'Arial, sans-serif',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
   formControl: {
     margin: theme.spacing(2, 0), // Add spacing on the top and bottom
     width: '100%',

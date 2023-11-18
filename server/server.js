@@ -9,6 +9,7 @@ const passport = require('./passport-config');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 const User = require('./models/User'); // Your user model
+const recipeRoutes = require('./routes/recipeRoutes');
 require('dotenv').config();
 
 app.use(cors());
@@ -27,6 +28,7 @@ app.use('/api/recipes', recipesRouter);
 app.use('/auth', authRoutes);
 app.use('/api/user', profileRoutes);
 
+app.use('/api/recipes', recipeRoutes);
 
 
 // Database connection
