@@ -1,33 +1,19 @@
-import React, { useState } from "react";
-import "../styles/Recipe.css"; // Import your CSS file for styling
+// Recipe.js
+import React from "react";
+import "../styles/Recipe.css"; // Make sure this path is correct
 
-const Recipe = ({ title, calories, image, ingredients }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
+const Recipe = ({ title, readyInMinutes, servings, image, sourceUrl }) => {
   return (
-    <div
-      className={`recipe-card ${isHovered ? "expanded" : ""}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="recipe-image-container">
-        <img className="recipe-image" src={image} alt={title} />
-        <div className="recipe-details">
-          <h2 className="recipe-title">{title}</h2>
-          <p className="calories">{Math.round(calories)} calories</p>
-        </div>
-      </div>
-      <div className={`modal ${isHovered ? "expanded" : ""}`}>
-        <div className="modal-content">
-          <h3>Ingredients:</h3>
-          <ul className="ingredient-list">
-            {ingredients.map((ingredient, index) => (
-              <li key={index} className="ingredient-item">
-                {ingredient.text}
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div className="recipe-card">
+      <img src={image} alt={title} className="recipe-image" />
+      <div className="recipe-info">
+        <h3 className="recipe-title">{title}</h3>
+        <p className="recipe-meta">
+          Ready in {readyInMinutes} mins | {servings} servings
+        </p>
+        <a href={sourceUrl} target="_blank" rel="noopener noreferrer" className="recipe-button">
+          View Recipe
+        </a>
       </div>
     </div>
   );
