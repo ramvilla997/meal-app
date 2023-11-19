@@ -1,11 +1,9 @@
-# Meal & Shopping Planner -Plan2Shop
 
+# Recipe generator
 
-##In developement
+This Recipe App is a dynamic web application tailored for meal planning, based on users' interests. Developed with React for the client-side and Node.js for the server-side, it offers a seamless and interactive experience for meals and recipe .
 
-## Introduction
-
-Meal & Shopping Planner is an intuitive and user-friendly application that simplifies meal planning and grocery shopping. Designed for food enthusiasts and busy households alike, it offers a seamless experience from meal selection to ingredient purchase. Whether you are trying to eat healthily, plan on a budget, or just reduce the stress of daily meal decisions, Meal & Shopping Planner is your go-to solution.
+## Features
 
 ## Features
 
@@ -13,21 +11,58 @@ Meal & Shopping Planner is an intuitive and user-friendly application that simpl
 - **User Profile Creation**: Set up your profile and specify your dietary preferences for tailored meal suggestions.
 - **Recipe Discovery**: Browse through a curated list of recipes that align with your taste and dietary requirements.
 - **Ingredient Checklist**: For each recipe, get a comprehensive list of ingredients you’ll need.
-- **Shopping Navigation**: If you’re missing any ingredients, the app provides links to online stores where you can purchase them, or it locates the nearest grocery store where they are available.
 
-## Quick Start
+## Getting Started
 
-To get started with Meal & Shopping Planner, clone the repository and install the dependencies.
+### Prerequisites
+
+- Ensure you have Node.js, React and npm (Node Package Manager) installed on your machine.
+
+### Installation Steps
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/your-username/meal-shopping-planner.git
+   ```
+
+2. **Navigate to the Repository**
+
+   ```bash
+   cd meal-shopping-planner
+   ```
+
+3. **Install Main Dependencies**
+
+   ```bash
+   npm i
+   ```
+
+4. **Install Client Dependencies**
+
+   Navigate to the client directory and install dependencies:
+
+   ```bash
+   cd client
+   npm i
+   cd ..
+   ```
+
+5. **Install Server Dependencies**
+
+   Navigate to the server directory and install dependencies:
+
+   ```bash
+   cd server
+   npm i
+   cd ..
+   ```
+
+### Running the Application
+
+Start the application with the following command from the root directory:
 
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/meal-shopping-planner.git
-
-# Go into the repository
-cd meal-shopping-planner
-
-# Install dependencies
-npm install
-
-# Start the server
 npm start
+```
+
